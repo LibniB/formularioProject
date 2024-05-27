@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formularios/interfaz/modalNuevaPersona.dart';
 
 class Homeprincipal extends StatefulWidget {
   const Homeprincipal({super.key});
@@ -19,15 +20,31 @@ class _HomeprincipalState extends State<Homeprincipal> {
       body: ListView.builder(
         itemCount: personas.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(personas[index]["nombres"]+" "+personas[index]["apellidos"]),
+          return Card(
+            child: ListTile(
+          title: Text(
+            "Nombres completos: \n" + personas[index]["nombres"]
+            +" "+
+            personas[index]["apellidos"]),
+            subtitle: Text(personas[index]["identificacion"]),
+            leading: Icon(Icons.arrow_forward_ios),
+          )
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal[400],
+        foregroundColor: Colors.white,
+        onPressed: (){
+          ModalNuevaPersona(context);
+        },
+        child: Icon(Icons.person_add_alt_outlined),
+        ),
     );
   }
 }
 
+//////////////////////////////////////
 
 ////////////////////////////////////////////////
 List<Map<String, dynamic>> personas = [
